@@ -1,44 +1,46 @@
-# AcademySoft TETRIS (1986) — reconstructed source code
+# AcademySoft TETRIS (1986) — reverse-engineered source code
 
-**The original 1986 Soviet Tetris by A. Pajitnov & V. Gerasimov (AcademySoft, USSR)**  
-Recovered by reverse engineering of the original `TETRIS.COM` (24245 bytes).  
-Ported to **Turbo Pascal 7** (the original was written in Turbo Pascal 3.0).
+**Reverse-engineered reconstruction of the original 1986 Soviet Tetris by A. Pajitnov & V. Gerasimov (AcademySoft, USSR).**
+
+The source code was recovered by reverse engineering the original `TETRIS.COM` executable (24245 bytes). The reconstruction preserves the original program structure, procedures, variables, algorithms and formulas.
+
+The original program was written in **Turbo Pascal 3.0**. I ported the reconstructed source code to **Turbo Pascal 7.0** while keeping its original DOS-specific behavior.
 
 ---
 
 ## Legal notice
 
-This project is a reconstruction of the original 1986 version of TETRIS distributed in the USSR.
+This repository contains a reverse-engineered reconstruction of the original 1986 version of TETRIS distributed in the USSR.
 
 - **Original game**: (C) 1986 Alexey Pajitnov, Vadim Gerasimov, AcademySoft (Computing Centre of the USSR Academy of Sciences), Moscow
 - **Turbo Pascal runtime library**: (C) 1985 Borland International
 
 **I publish this reconstruction strictly for historical, educational and archival purposes.**
 
-This project is not affiliated with or endorsed by The Tetris Company. Please respect the intellectual property of the original authors.
+This project is not affiliated with or endorsed by The Tetris Company. Please respect the intellectual property rights of the original authors and other rights holders.
 
-If you represent the rights holders and want me to take this repository down, open an issue or contact me — I will do so.
+If you represent the rights holders and want me to take this repository down, open an issue or contact me.
 
 ---
 
 ## Requirements
 
-The game runs **only under MS-DOS** (or a DOS emulator) — this is not a port to modern operating systems.
+The game runs **only under MS-DOS** (or a DOS emulator). This is not a port to a modern operating system.
 
-The code talks to IBM PC hardware directly:
+The reconstructed code retains direct interaction with IBM PC hardware:
 
-- direct writes to video memory at `$B800` / `$B000` (screen save and restore);
-- reads from the BIOS data area: `$0040:$0049` (video mode) and `$0040:$0060` (cursor shape);
-- `INT 10h` for cursor control;
-- switching between 40- and 80-column text modes and monochrome MDA;
-- real-mode `Crt` unit: `Sound`, `Delay`, `ReadKey`;
-- the 6-byte Turbo Pascal `Real` type, which the high score file format depends on.
-
-It will not run natively on Windows or Linux.
+- direct access to video memory at `$B800` / `$B000`;
+- access to the BIOS Data Area;
+- BIOS `INT 10h` services;
+- 40/80-column and MDA text modes;
+- Turbo Pascal `Crt` routines (`Sound`, `Delay`, `ReadKey`);
+- the 6-byte Turbo Pascal `Real` type used by the original high-score format.
 
 ## Building and running
 
-### Option A: DOSBox + Turbo Pascal 7 (recommended)
+### DOSBox + Turbo Pascal 7
 
-1. Install [DOSBox](https://www.dosbox.com/) (or DOSBox-X / DOSBox Staging) with Turbo Pascal 7.
-2. Compile the source with the command-line compiler:
+Install DOSBox (or DOSBox-X / DOSBox Staging) and Turbo Pascal 7.0, then compile the reconstructed source:
+
+```dos
+TPC TETRIS.PAS
