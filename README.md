@@ -40,7 +40,4 @@ The reconstructed code retains direct interaction with IBM PC hardware:
 
 ### DOSBox + Turbo Pascal 7
 
-Install DOSBox (or DOSBox-X / DOSBox Staging) and Turbo Pascal 7.0, then compile the reconstructed source:
-
-```dos
-TPC TETRIS.PAS
+Install DOSBox (or DOSBox-X / DOSBox Staging) and Turbo Pascal 7.0, then compile the reconstructed source.
