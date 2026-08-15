@@ -6,9 +6,9 @@
 {   Game by A. Pajitnov & V. Gerasimov                                 }
 {                                                                      }
 {   Recovered by reverse engineering of the original TETRIS.COM        }
-{   (24245 bytes, Turbo Pascal 3.0, "Copyright (C) 1985 BORLAND Inc"). }
+{   (24235 bytes, Turbo Pascal 3.0, "Copyright (C) 1985 BORLAND Inc"). }
 {                                                                      }
-{   The original was written in Turbo Pascal 3.0, so this port is      }
+{   The original was written in Turbo Pascal 7.0, so this port is      }
 {   also in Pascal, preserving the original program structure: the     }
 {   same procedures, variables and formulas.                           }
 {                                                                      }
