@@ -41,4 +41,4 @@
 ### Вариант A: DOSBox + Turbo Pascal 7 (рекомендую)
 
 1. Установите [DOSBox](https://www.dosbox.com/) (или DOSBox-X / DOSBox Staging).
-2. Смонтируйте каталог с исходником и компилятором TP 7:
+2. Скомпилируйте каталог с исходником и компилятором TurboPascal 7:
