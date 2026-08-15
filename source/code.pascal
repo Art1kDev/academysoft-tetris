@@ -337,6 +337,9 @@ end;
 procedure LineSound;
 begin Sound(300);Delay(20);Sound(200);Delay(20);Sound(400);Delay(20);NoSound end;
 
+procedure DeniedBeep;
+begin Sound(200);Delay(100);Sound(400);Delay(100);NoSound end;
+
 procedure RemoveLines;
 var Full,X,Src,Y: Integer;
 begin
@@ -366,10 +369,33 @@ begin
 end;
 
 procedure AskPlayerName(var Nm: PlayerName);
+var I: Integer; C: Char;
 begin
   SetTextMode3; TextBackground(Black); TextColor(LightGray); ClrScr;
   GotoXYW(1,24); TextColor(Red); WriteW('Enter Your Name:');
-  TextColor(LightGray); ShowCursor; ReadLn(Nm); HideCursor
+  TextColor(LightGray); ShowCursor;
+  Nm := ''; I := 0;
+  repeat
+    C := ReadKey;
+    if C = #0 then C := ReadKey
+    else if C = #8 then
+      if I > 0 then
+      begin
+        Dec(I); Nm[0] := Chr(I);
+        Write(#8, ' ', #8)
+      end
+      else DeniedBeep
+    else if C = #13 then
+      begin end
+    else if (C >= ' ') and (C <= Chr(254)) then
+      if I < 15 then
+      begin
+        Inc(I); Nm[I] := C; Nm[0] := Chr(I); Write(C)
+      end
+      else DeniedBeep
+    else DeniedBeep
+  until C = #13;
+  HideCursor
 end;
 
 procedure QuitGame;
@@ -398,19 +424,15 @@ procedure HandleKey;
 var C: Char;
 begin
   if not KeyPressed then Exit; C:=ReadKey;
-  if C=#27 then QuitGame;
-  if C=#0 then
-  begin
-    C:=ReadKey;
-    case C of
-      #71:MoveLeft; #72:RotatePiece; #73:MoveRight;
-      #75:DropPiece; #77:SpeedUp; #79:ToggleNext
-    end;
-    Exit
-  end;
+  if C=#0 then C:=ReadKey;
   case C of
-    '7':MoveLeft; '9':MoveRight; '8':RotatePiece;
-    '4',' ':DropPiece; '1','o','O':ToggleNext; '6':SpeedUp
+    '4',' ',#75: begin Delay(8); DropPiece end;
+    '7',#71: begin Delay(6); MoveLeft end;
+    '8',#72: begin Delay(22); RotatePiece end;
+    '9',#73: begin Delay(6); MoveRight end;
+    '1',#79: begin Delay(8); ToggleNext end;
+    '6',#77: begin Delay(8); SpeedUp end;
+    #27: QuitGame
   end
 end;
 
@@ -589,7 +611,7 @@ end;
 procedure AskAgain(var Again: Boolean);
 var C: Char;
 begin
-  GotoXYW(1,25);FlushKeys;TextColor(Cyan);Write('Once more? (Y/N) > ');
+  GotoXYW(1,25);FlushKeys;TextColor(LightMagenta);Write('Once more? (Y/N) > ');
   repeat C:=ReadKey;if C=#0 then C:=ReadKey;if C=#27 then QuitGame until UpCase(C) in ['Y','N'];
   Again:=UpCase(C)='Y';if Again then WriteLn('Yes') else begin WriteLn('No');QuitGame end
 end;
@@ -597,6 +619,6 @@ end;
 var Again: Boolean;
 begin
   DetectWideMode;DetectVideoSeg;SaveScreen;SeedOriginalRandom;
-  TitleScreen;HiLoad;AskLevel;
-  repeat PlayOneGame;AskAgain(Again) until not Again
+  TitleScreen;HiLoad;
+  repeat AskLevel;PlayOneGame;AskAgain(Again) until not Again
 end.
