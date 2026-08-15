@@ -1,6 +1,6 @@
 { ==================================================================== }
 {                                                                      }
-{   TETRIS (1986) -- reconstructed source code                         }
+{   TETRIS (1986) -- reverse-engineered source code                    }
 {                                                                      }
 {   (C) AcademySoft CCAS USSR Moscow, 1986                             }
 {   Game by A. Pajitnov & V. Gerasimov                                 }
@@ -8,11 +8,11 @@
 {   Recovered by reverse engineering of the original TETRIS.COM        }
 {   (24235 bytes, Turbo Pascal 3.0, "Copyright (C) 1985 BORLAND Inc"). }
 {                                                                      }
-{   The original was written in Turbo Pascal 7.0, so this port is      }
-{   also in Pascal, preserving the original program structure: the     }
-{   same procedures, variables and formulas.                           }
+{   The original was written in Turbo Pascal 3.0. This reconstruction  }
+{   was ported to Turbo Pascal 7.0 while preserving the original       }
+{   program structure, procedures, variables and formulas.             }
 {                                                                      }
-{ ==================================================================== }
+{ ==================================================================== } 
 {$R-}{$Q-}{$S-}{$A-}{$N-}{$E-}
 program Tetris;
 uses Crt, Dos;
