@@ -31,7 +31,7 @@ type
   HiRec = packed record
     Name: PlayerName;
     Level: Integer;
-    Score: Real                 { TP 6-byte real }
+    Score: Real
   end;
   HiFile = file of HiRec;
   ScreenBuf = array[0..3999] of Integer;
